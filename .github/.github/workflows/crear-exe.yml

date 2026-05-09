@@ -1,0 +1,33 @@
+name: Crear EXE ViNX0
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  generar-exe:
+    runs-on: windows-latest
+    steps:
+      - name: Obtener código del repositorio
+        uses: actions/checkout@v5
+
+      - name: Instalar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Actualizar pip
+        run: python -m pip install --upgrade pip
+
+      - name: Instalar PyInstaller
+        run: pip install pyinstaller
+
+      - name: Crear archivo EXE
+        run: pyinstaller --onefile --windowed main.py
+
+      - name: Guardar EXE para descargar
+        uses: actions/upload-artifact@v4
+        with:
+          name: ViNX0-Ejecutable
+          path: dist/main.exe
