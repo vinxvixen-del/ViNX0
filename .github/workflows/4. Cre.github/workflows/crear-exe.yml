@@ -33,3 +33,5 @@ jobs:
         with:
           name: ViNX0-Juego-Listo
           path: dist/main.exe
+
+"Agrego flujo para crear EXE con Ursina"
